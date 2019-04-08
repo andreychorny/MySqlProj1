@@ -8,6 +8,22 @@ BEGIN
 END;;
 
 DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER before_employee 
+    BEFORE INSERT ON employee
+    FOR EACH ROW 
+BEGIN
+IF (NEW.gender != 'M' && NEW.gender != 'F' && NEW.gender != 'm' && NEW.gender != 'f' ) 
+THEN SET NEW.first_name = null;
+END IF;
+IF (NEW.gender = 'm') THEN SET NEW.gender = 'M';
+END IF;
+IF (NEW.gender = 'f') THEN SET NEW.gender = 'F';
+END IF;
+END$$
+DELIMITER ;
+
 ALTER TABLE employee AUTO_INCREMENT = 1;
 ALTER TABLE country AUTO_INCREMENT = 1;
 ALTER TABLE address AUTO_INCREMENT = 1;

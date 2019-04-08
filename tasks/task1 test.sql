@@ -1,0 +1,1 @@
+CALL insertEmp('aaa', 'Ccc', '1995-11-21', 'z', 'aaa',1,1);
